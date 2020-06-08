@@ -1,0 +1,207 @@
+:root {
+    --colorPrincipal: #142850;
+    --colorOscuro: #27496d;
+    --colorSecundario: #0c7b93;
+    --colorSecundarioClaro: #00a8cc;
+    --fuente: 'Barlow', sans-serif;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+
+#posicionAbsoluta {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+}
+
+#infoPop {
+    margin: 20px 0;
+    z-index: 1;
+    padding: 10px 30px;
+    width: 800px;
+    border-radius: 10px;
+    background-color: var(--colorPrincipal);
+}
+
+h1, h2, h3 {
+    text-align: center;
+    font-family: var(--fuente);
+    text-transform: uppercase;
+    margin: 10px 0;
+    color: white;
+}
+
+#salir {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    font-family: var(--fuente);
+    text-transform: uppercase;
+    margin: 0;
+    cursor: pointer;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+#principal {
+    position: fixed;
+    background-color: #eee;
+    width: 100%;
+    height: 100vh;
+}
+
+#mynetwork {
+    width: 100%;
+    height: 80%;
+}
+
+#panelBotones {
+    width: 100%;
+    height: 20%;
+}
+
+#botones {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#botones img {
+    cursor: pointer;
+    margin: 20px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: var(--colorOscuro);
+    width: 60px;
+}
+
+#botones img:hover {
+    opacity: .9;
+}
+
+input[type="color"] {
+    width: 80%;
+}
+
+.row2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row2>* {
+    margin: 10px 0;
+    flex: 1 1 50%;
+}
+
+.row3 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.row3>* {
+    flex: 1 1 33.33%;
+}
+
+.row3 .row2 {
+    padding: 0 10px;
+}
+
+.columna2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+label {
+    width: 40%;
+    margin: 5px 0;
+    color: white;
+    font-family: var(--fuente);
+    font-size: 18px;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+#submitTree {
+    cursor: pointer;
+    width: 50%;
+    display: block;
+    padding: 10px 0;
+    margin: 10px auto;
+    border-radius: 7px;
+    font-family: var(--fuente);
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: var(--colorSecundarioClaro);
+    border: none;
+    /* background-color: var(--colorPrincipal); */
+}
+
+#submitTree:focus {
+    outline: none;
+    border: 0;
+}
+
+#submitTree:hover {
+    opacity: .8;
+}
+
+div#infoBF {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 120px;
+    height: auto;
+    background-color: var(--colorPrincipal);
+    text-align: center;
+}
+
+div#infoBF h3 {
+    margin: 0;
+    padding: 2px;
+    font-size: 18px;
+}
+
+.listGraphs {
+    margin: 30px 0px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.listGraphs input[type='file']{
+    margin: auto;
+}
