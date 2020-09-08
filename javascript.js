@@ -16,6 +16,7 @@ let nodes = [];
 let edges = [];
 let arrayBellmanFord = [];
 
+// loadJSON()
 
 botones[1].addEventListener('click', calcularArbol, true);
 botones[2].addEventListener('click', ejecutarRecorridoTotal, true);
@@ -36,38 +37,42 @@ function cargarGrafos() {
 
     let labelFile = document.createElement("label");
     labelFile.innerHTML = "Load file JSON";
-    let inputFile = document.createElement("input");
-    inputFile.setAttribute("type", "file");
-    inputFile.setAttribute("id", "fileToLoad");
-    inputFile.setAttribute("accept", "application/JSON");
+
+    let select = document.createElement("select");
+    select.setAttribute('id', 'selectJSON');
+    for (let i = 0; i < 5; i++) {
+        let option = document.createElement('option');
+        option.setAttribute('value', (i + 1));
+        option.setAttribute('class', 'arbol');
+        option.innerHTML = 'Arbol #' + (i + 1);
+        select.appendChild(option);
+    }
 
     divMainGraphs.appendChild(labelFile);
-    divMainGraphs.appendChild(inputFile);
+    divMainGraphs.appendChild(select);
 
     var submit = document.createElement("button");
     submit.innerHTML = "GENERATE TREE";
     submit.id = "submitTree";
-    submit.addEventListener('click', load, true);
+    submit.addEventListener('click', () => {
+        let value = select.options[select.selectedIndex].value;
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', `JSON/arbol_${value}.json`, true);
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+                generarJSONGraph(JSON.parse(xobj.responseText));
+            }
+        };
+        xobj.send();
+    }, false);
 
     info.appendChild(divMainGraphs);
     info.appendChild(submit);
 }
 
-function load() {
-    var fileToLoad = document.getElementById("fileToLoad").files[0];
-
-    var fileReader = new FileReader();
-    fileReader.onload = function (fileLoadedEvent) {
-        var textFromFileLoaded = fileLoadedEvent.target.result;
-        generarJSONGraph(JSON.parse(textFromFileLoaded));
-    };
-
-    fileReader.readAsText(fileToLoad, "UTF-8");
-}
-
 function generarJSONGraph(jsonText) {
     let grafo = jsonText;
-    console.log(grafo.nodes);
     nodes = [];
     edges = [];
     let nodesAgregados = [];
@@ -376,9 +381,9 @@ function bellmanFord() {
     for (let i = 1; i <= network.body.nodeIndices.length; i++) {
         let h3BF = document.createElement("h3");
         h3BF.innerHTML = i + " --> " + (isFinite(parseInt(arrayBellmanFord[i - 1].valor)) ? arrayBellmanFord[i - 1].valor : "∞");
-        divInfoBF.appendChild(h3BF);        
+        divInfoBF.appendChild(h3BF);
     }
-    
+
     divInfoBF.appendChild(document.createElement("hr"));
 }
 
